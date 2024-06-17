@@ -18,6 +18,9 @@ module.exports = {
             target: {
                 type: Sequelize.STRING
             },
+            type: {
+                type: Sequelize.STRING
+            },
             bonus: {
                 type: Sequelize.STRING
             },

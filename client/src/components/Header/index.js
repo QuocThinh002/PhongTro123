@@ -1,9 +1,10 @@
 import { useCallback } from "react";
 import Button from "../Button";
-import { FaArrowRightToBracket, FaUserPlus, FaHeart, FaPlus } from 'react-icons/fa6';
+import { FaArrowRightToBracket, FaUserPlus, FaHeart, FaPlus, FaUser, FaRightFromBracket } from 'react-icons/fa6';
 import { Link, useNavigate } from "react-router-dom";
 import { path } from "../../routes/path";
-
+import { useSelector, useDispatch } from 'react-redux'
+import * as actions from '../../store/actions'
 
 const Header = () => {
 
@@ -11,16 +12,12 @@ const Header = () => {
         logo: 'https://phongtro123.com/images/logo-phongtro.svg'
     }
     const navigate = useNavigate();
+    const dispath = useDispatch();
+    const { isLoggedIn } = useSelector(state => state.auth);
     const goLogin = useCallback((flag) => {
         navigate(path.LOGIN, { state: { flag } });
     }, [navigate])
 
-    const buttons = [
-        { text: 'Yêu thích', iconLeft: < FaHeart />, hoverColor: 'hover:bg-blue-100' },
-        { onClick: () => goLogin(true), text: 'Đăng nhập', iconLeft: <FaUserPlus />, hoverColor: 'hover:bg-blue-100' },
-        { onClick: () => goLogin(false), text: 'Đăng ký', iconLeft: <FaArrowRightToBracket />, hoverColor: 'hover:bg-blue-100' },
-        { text: 'Đăng ký miễn phí', iconRight: <FaPlus />, bgColor: 'bg-secondary2', textColor: 'text-white', hoverColor: 'hover:bg-red-600' }
-    ]
 
 
     return (<>
@@ -35,7 +32,17 @@ const Header = () => {
                 </div>
             </Link>
             <div className="flex gap-2">
-                {buttons.map((button, index) => (<Button dataButton={button} key={index} />))}
+                {isLoggedIn && <Button text='Yêu thích' iconLeft={< FaHeart />} hoverColor='hover:bg-blue-100' />}
+                <Button text='Yêu thích' iconLeft={< FaHeart />} hoverColor='hover:bg-blue-100' />
+                {!isLoggedIn && <>
+                    <Button onClick={() => goLogin(true)} text='Đăng nhập' iconLeft={<FaArrowRightToBracket />} hoverColor='hover:bg-blue-100' />
+                    <Button onClick={() => goLogin(false)} text='Đăng ký' iconLeft={<FaUserPlus />} hoverColor='hover:bg-blue-100' />
+                </>}
+                {isLoggedIn && <>
+                    <Button onClick={() => dispath(actions.logout())} text='Đăng xuất' iconLeft={<FaRightFromBracket />}  hoverColor='hover:bg-blue-100' />
+                    <Button text='Quản lý tài khoản' iconLeft={<FaUser />}  hoverColor='hover:bg-blue-100' />
+                </>}
+                <Button text='Đăng ký miễn phí' iconRight={<FaPlus />} bgColor='bg-secondary2' textColor='text-white' hoverColor='hover:bg-red-600' />
             </div>
         </div>
     </>)

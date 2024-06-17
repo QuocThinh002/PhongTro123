@@ -24,6 +24,9 @@ module.exports = {
             categoryCode: {
                 type: Sequelize.STRING
             },
+            labelCode: {
+                type: Sequelize.STRING
+            },
             description: {
                 type: Sequelize.TEXT
             },

@@ -1,13 +1,18 @@
+const crypto = require('crypto');
 
-const generateCode = (len) => {
-    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    const digit = "0123456789";
-    let result = "";
-    for (let i = 0; i < len - 1; ++i) {
-        result += alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+const codeCache = new Map(); // Bộ lưu trữ kết quả
+
+function generateCode(first, len) {
+    if (codeCache.has(first)) {
+        return codeCache.get(first); // Trả về kết quả đã lưu trong cache
     }
-    result += digit.charAt(Math.floor(Math.random() * digit.length));
-    return result;
+
+    const hash = crypto.createHash('md5');
+    hash.update(first);
+    const second = hash.digest('hex').slice(0, len).toUpperCase();
+
+    codeCache.set(first, second); // Lưu kết quả vào cache
+    return second;
 }
 
 export default generateCode;

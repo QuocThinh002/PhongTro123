@@ -1,5 +1,5 @@
 
-const HeaderCategory = (props) => {
+const CategoryHeader = (props) => {
     const { header, subheader } = props;
     return (<>
         <div className="border border-red-500 mb-4">
@@ -9,4 +9,4 @@ const HeaderCategory = (props) => {
     </>)
 }
 
-export default HeaderCategory;
+export default CategoryHeader;

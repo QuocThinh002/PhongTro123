@@ -1,5 +1,5 @@
 import Filter from "../../../components/Filter";
-import HeaderCategory from "../../../components/HeaderCategory";
+import CategoryHeader from "../../../components/CategoryHeader";
 import Province from "../../../components/Province";
 
 const RentalRoom = () => {
@@ -7,7 +7,7 @@ const RentalRoom = () => {
     return (<>
         
         <Filter />
-        <HeaderCategory />
+        <CategoryHeader />
         <Province />
     </>)
 }

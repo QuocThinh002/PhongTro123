@@ -1,5 +1,5 @@
 import Button from "../Button";
-import FilterItem from "../FilterItem";
+import FilterItem from "./FilterItem";
 
 import { FaHotel, FaAngleRight, FaLocationDot, FaFilterCircleDollar, FaCrop } from 'react-icons/fa6'
 import {FaSearch} from 'react-icons/fa'

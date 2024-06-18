@@ -91,10 +91,10 @@ const Login = () => {
             <Button onClick={handleSubmit} text= {isLogin ?  'Đăng nhập':'Tạo tài khoản'} bgColor= 'bg-secondary1' textColor= 'text-white' width= 'w-full' hoverColor= 'hover:bg-blue-700' />
             <div className='mt-3 flex items-center justify-between'>
                 {isLogin ? <>
-                    <span className='text-[blue] hover:text-[orange] cursor-pointer'>Bạn quên mật khẩu?</span>
-                    <span onClick={() => {setIsLogin(false); setPayload({ phone: '', password: '', fullName: '' })}} className='text-[blue] hover:text-[orange] cursor-pointer'>Tạo tài khoản mới</span>
+                    <span className='text-[blue] hover:text-orange-500 cursor-pointer'>Bạn quên mật khẩu?</span>
+                    <span onClick={() => {setIsLogin(false); setPayload({ phone: '', password: '', fullName: '' })}} className='text-[blue] hover:text-orange-500 cursor-pointer'>Tạo tài khoản mới</span>
                 </> : <>
-                    <span>Bạn đã có tài khoản? <span onClick={() => {setIsLogin(true); setPayload({ phone: '', password: '', fullName: '' })}} className='text-[blue] hover:text-[orange] cursor-pointer'>Đăng nhập ngay!</span></span>
+                    <span>Bạn đã có tài khoản? <span onClick={() => {setIsLogin(true); setPayload({ phone: '', password: '', fullName: '' })}} className='text-[blue] hover:text-orange-500 cursor-pointer'>Đăng nhập ngay!</span></span>
                 </>}
             </div>
         </div>

@@ -1,6 +1,6 @@
 import { memo } from "react";
 import { location } from '../../utils/constant'
-import ProvinceItem from "../ProvinceItem";
+import ProvinceItem from "./ProvinceItem";
 
 
 const Province = () => {

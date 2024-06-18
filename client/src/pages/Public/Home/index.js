@@ -4,8 +4,7 @@ import Navigation from "../../../components/Navigation";
 
 const Home = () => {
     return (<>
-        <div className="m-auto h-full">
-            
+        <div className="m-auto bg-primary">      
             <Header />
             <Navigation />
             <div className="w-1100 mx-auto flex flex-col items-center justify-start">

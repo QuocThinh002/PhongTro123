@@ -14,6 +14,8 @@ const Navigation = () => {
         fetchCategories()
     }, [])
 
+
+
     return (<>
         <div className="bg-secondary1 mb-4">
             <div className=" text-white text-sm font-semibold mx-auto w-[1120px]">

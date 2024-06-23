@@ -7,6 +7,7 @@ import RentalRoom from '../pages/Public/RentalRoom';
 import RentalSpace from '../pages/Public/RentalSpace';
 import RentalApartment from '../pages/Public/RentalApartment';
 import HomePage from '../pages/Public/HomePage';
+import PostDetail from '../pages/Public/PostDetail';
 
 export const routes = [
     {
@@ -36,6 +37,10 @@ export const routes = [
             {
                 path: path.CHO_THUE_CAN_HO,
                 element: <RentalApartment />
+            },
+            {
+                path: path.POST_DETAIL,
+                element: <PostDetail />
             }
         ]
     },

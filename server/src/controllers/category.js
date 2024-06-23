@@ -7,7 +7,7 @@ export const getCategories = async (req, res) => {
     } catch (error) {
         res.status(500).json({
             error: -1,
-            message: error
+            message: error,
         })
     }
 }

@@ -1,45 +1,29 @@
 import Button from '../Button'
-import { FaPhone, FaRegUser } from 'react-icons/fa6'
-import {apiGetUser} from '../../services/user'
-import { useEffect, useState } from 'react';
+import { FaPhone} from 'react-icons/fa6'
 
 const MetaRow = (props) => {
-    const { userId } = props;
-    const [user, setUser] = useState({});
-
-    const handleGetUser = async (userId) => {
-        const response = await apiGetUser(userId);
-        return response?.data?.user
-    }
-
-    useEffect(() => {
-        const fetchUser = async () => {
-            const response = await handleGetUser(userId);
-            setUser(response)
-        }
-        fetchUser()
-    }, [])
+    const { user, star } = props;
     
     return (<>
         <div className='flex items-center justify-between'>
             <div className='flex items-center'>
-                <div className='h-10 w-10 rounded-full'>
-                    {user.avatar && <img
-                        src={user.avatar}
-                        alt='image'
-                        className=''
-                    />}
-                    {!user.avatar && <FaRegUser size={40} />}
+                <div className='h-10 w-10 rounded-full overflow-hidden'>
+                    <img
+                        src={user?.avatar || (window.location.origin + '/assets/image/non_avatar.png')}
+                        alt={user?.fullName}
+                        className='object-cover'
+                    />
                 </div>  
-                <span className='ml-1 font-medium text-lg'>{user.fullName}</span>
+                <span className='ml-1 font-medium text-lg'>{user?.fullName}</span>
             </div>
-            <div className='flex items-center gap-4'>
-                <Button bgColor='bg-secondary1 text-white' text={user.phone} iconLeft={<FaPhone />} />
+            {(star || null) && <div className='flex items-center gap-4'>
+                <Button bgColor='bg-secondary1 text-white' text={user?.phone} iconLeft={<FaPhone />} />
                 <img
                     src={window.location.origin + '/assets/image/icon_zalo.png'}
+                    alt='zalo'
                     className='w-10 h-10 cursor-pointer rounded-lg'
                 />
-            </div>
+            </div>}
         </div>
     </>)
 }

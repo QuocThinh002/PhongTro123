@@ -1,13 +1,33 @@
+import { Op } from 'sequelize';
 import { Post, Image, Attribute, User } from '../models';
 
-export const getPostsServices = async (page, limit) => {
+export const getPostsServices = async (page, limit, priceMin, priceMax, acreageMin, acreageMax) => {
     try {
-        // Default values for page and limit
         page = parseInt(page) || 1;
         limit = parseInt(limit) || 20;
 
+        // Create a flexible where clause
+        const whereClause = {};
 
+        if (Number.isFinite(priceMin) && Number.isFinite(priceMax)) {
+            whereClause['$attributes.price$'] = { [Op.between]: [priceMin, priceMax] };
+        } else if (Number.isFinite(priceMin)) {
+            whereClause['$attributes.price$'] = { [Op.gte]: priceMin };
+        } else if (Number.isFinite(priceMax)) {
+            whereClause['$attributes.price$'] = { [Op.lte]: priceMax };
+        }
+
+        if (Number.isFinite(acreageMin) && Number.isFinite(acreageMax)) {
+            whereClause['$attributes.acreage$'] = { [Op.between]: [acreageMin, acreageMax] };
+        } else if (Number.isFinite(acreageMin)) {
+            whereClause['$attributes.acreage$'] = { [Op.gte]: acreageMin };
+        } else if (Number.isFinite(acreageMax)) {
+            whereClause['$attributes.acreage$'] = { [Op.lte]: acreageMax };
+        }
+        
         const { count, rows: posts } = await Post.findAndCountAll({
+            // logging: console.log,
+            where: whereClause,
             raw: true,
             nest: true,
             include: [
@@ -15,10 +35,10 @@ export const getPostsServices = async (page, limit) => {
                 { model: Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
                 { model: User, as: 'user', attributes: ['id', 'fullName', 'phone', 'zalo'] }
             ],
-            attributes: ['id', 'title', 'star', 'address', 'description'],
+            attributes: ['id', 'title', 'star', 'address', 'description', 'createdAt'],
             order: [['star', 'DESC'], ['createdAt', 'DESC']],
             offset: (page - 1) * limit,
-            limit: limit
+            limit
         });
 
         return {

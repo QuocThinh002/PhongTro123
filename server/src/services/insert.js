@@ -4,12 +4,13 @@ import bcrypt from 'bcryptjs'
 import { v4 as uuidv4 } from 'uuid'
 
 import generateCode from '../utils/generateCode';
+import convertPrice from '../utils/convertPrice';
+import subtractRandomDate from '../utils/randomDate';
 
 import chothuecanho from '../../databaseFake/chothuecanho.json';
 import chothuephongtro from '../../databaseFake/chothuephongtro.json';
 import chothuematbang from '../../databaseFake/chothuematbang.json';
 import nhachothue from '../../databaseFake/nhachothue.json';
-import { DatabaseError } from 'sequelize';
 
 const dataBody = [chothuecanho.body, chothuematbang.body, chothuephongtro.body, nhachothue.body];
 const categoriesCode = ['CTCH', 'CTMB', 'CTPT', 'NCT'];
@@ -30,6 +31,7 @@ export const insertService = async () => {
                 let userId = uuidv4();
                 let overviewId = uuidv4();
                 let imagesId = uuidv4();
+                let price = convertPrice(item.header?.attributes?.price)
 
                 await db.Post.create({
                     id: postId,
@@ -43,11 +45,12 @@ export const insertService = async () => {
                     userId,
                     overviewId,
                     imagesId,
+                    createdAt: subtractRandomDate(new Date()).newDate
                 })
 
                 await db.Attribute.create({
                     id: attributesId,
-                    price: item.header?.attributes?.price,
+                    price,
                     acreage: item.header?.attributes?.acreage,
                     published: item.header?.attributes?.published,
                     hashtag: item.header?.attributes?.hashtag,

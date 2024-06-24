@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     }
     Attribute.init({
-        price: DataTypes.STRING,
+        price: DataTypes.INTEGER,
         acreage: DataTypes.STRING,
         published: DataTypes.STRING,
         hashtag: DataTypes.STRING,

@@ -1,7 +1,9 @@
 import { FaStar, FaHeart } from 'react-icons/fa6';
 import * as getAttributeConfig from '../../utils/getAttributeConfig'
 import MetaRow from './MetaRow';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import convertPriceUnit from '../../utils/convertPriceUnit';
+import timeAgo from '../../utils/timeAgo'
 
 const PostItem = (props) => {
     const { post } = props;
@@ -34,7 +36,7 @@ const PostItem = (props) => {
             borderColor: 'border-five'
         }
     ]
-
+    console.log(post.createdAt)
 
 
     return (
@@ -65,9 +67,9 @@ const PostItem = (props) => {
 
                 </div>
                 <div className="mt-1">
-                    <span className='text-textColor text-lg font-bold'>{post?.attributes?.price}</span>
+                    <span className='text-textColor text-lg font-bold'>{convertPriceUnit(post?.attributes?.price)}/tháng</span>
                     <span className='ml-3'>{post?.attributes?.acreage}</span>
-                    <span className='float-right text-gray-500'>{post?.attributes?.published}</span>
+                    <span className='float-right text-gray-500'>{timeAgo(post?.createdAt)}</span>
                 </div>
                 <div className='mb-1'>
                     {getAttributeConfig.address(post?.address)}

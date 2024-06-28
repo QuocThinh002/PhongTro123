@@ -1,10 +1,10 @@
 import axiosConfig from '../axiosConfig';
 
-export const apiGetPosts = (page, limit) => new Promise(async (resolve, reject) => {
+export const apiGetPosts = (data) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosConfig({
             method: 'get',
-            url: `/api/v1/post?page=${page}&limit=${limit}`
+            url: `/api/v1/post?page=${data.page}&limit=${data.limit}&priceMin=${data.priceMin}&priceMax=${data.priceMax}`
         })
         resolve(response)
     } catch (error) {

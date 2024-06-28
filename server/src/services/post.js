@@ -5,6 +5,10 @@ export const getPostsServices = async (page, limit, priceMin, priceMax, acreageM
     try {
         page = parseInt(page) || 1;
         limit = parseInt(limit) || 20;
+        priceMin = +priceMin;
+        priceMax = +priceMax;
+        acreageMin = +acreageMin;
+        acreageMax = +acreageMax;
 
         // Create a flexible where clause
         const whereClause = {};

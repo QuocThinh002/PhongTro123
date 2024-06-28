@@ -15,10 +15,12 @@ const PostList = () => {
     const currentPage = +searchParams.get('page') || 1
     const limit = +searchParams.get('limit') || 4;
     const numPages = parseInt(count / limit + 0.5);
+    const priceMin = +searchParams.get('priceMin');
+    const priceMax = +searchParams.get('priceMax');
 
     useEffect(() => {
-        dispatch(getPosts(currentPage, limit))
-    }, [currentPage, limit])
+        dispatch(getPosts({ currentPage, limit, priceMin, priceMax }))
+    }, [currentPage, limit, priceMin, priceMax])
 
     const onPageChange = (page) => {
         const currentParams = Object.fromEntries([...searchParams]);

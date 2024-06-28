@@ -36,7 +36,6 @@ const PostItem = (props) => {
             borderColor: 'border-five'
         }
     ]
-    console.log(post.createdAt)
 
 
     return (

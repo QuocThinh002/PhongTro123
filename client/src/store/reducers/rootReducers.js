@@ -1,6 +1,7 @@
 import authReducer from './authReducer';
 import userReducer from './userReducer';
-import postReducer from './postReducer'
+import postReducer from './postReducer';
+import priceRangeReducer from './priceRangeReducer'
 
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
@@ -21,7 +22,8 @@ const authConfig = {
 const rootReducer = combineReducers({
     auth: persistReducer(authConfig, authReducer),
     user: userReducer,
-    post: postReducer
+    post: postReducer,
+    priceRange: priceRangeReducer
 })
 
 export default rootReducer;

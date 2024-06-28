@@ -7,6 +7,7 @@ const actionTypes = {
     LOGIN_FAIL: 'LOGIN_FAIL',
 
     GET_POSTS: 'GET_POSTS',
+    GET_PRICE_RANGE: 'GET_PRICE_RANGE'
 }
 
 export default actionTypes;

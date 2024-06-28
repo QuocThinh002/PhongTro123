@@ -6,7 +6,7 @@ const MetaRow = (props) => {
     
     return (<>
         <div className='flex items-center justify-between'>
-            <div className='flex items-center'>
+            <div className='flex items-center flex-1'>
                 <div className='h-10 w-10 rounded-full overflow-hidden'>
                     <img
                         src={user?.avatar || (window.location.origin + '/assets/image/non_avatar.png')}
@@ -14,7 +14,7 @@ const MetaRow = (props) => {
                         className='object-cover'
                     />
                 </div>  
-                <span className='ml-1 font-medium text-lg'>{user?.fullName}</span>
+                <span className='ml-1 font-medium'>{user?.fullName}</span>
             </div>
             {(star || null) && <div className='flex items-center gap-4'>
                 <Button bgColor='bg-secondary1 text-white' text={user?.phone} iconLeft={<FaPhone />} />

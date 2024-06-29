@@ -3,9 +3,7 @@ import { PriceRange } from '../models'
 
 export const createPriceRangeServices = async (data) => {
     try {
-        console.log(data)
         const priceRange = await PriceRange.create(data);
-        console.log(priceRange)
         return {
             success: !!priceRange,  // Boolean indicates success or failure
             message: priceRange ? 'priceRange created' : 'priceRange not created',
@@ -24,7 +22,7 @@ export const getPriceRangesServices = async () => {
     try {
         const priceRanges = await PriceRange.findAll({
             raw: true,
-            attributes: ["id", "title", "priceMin", "priceMax"]
+            attributes: ["id", "title", "min", "max"]
         });
         return {
             success: !!priceRanges,

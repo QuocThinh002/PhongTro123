@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
 
     AcreageRange.init({
         title: DataTypes.STRING,
-        acreageMin: DataTypes.INTEGER,
-        acreageMax: DataTypes.INTEGER
+        min: DataTypes.INTEGER,
+        max: DataTypes.INTEGER
     }, {
         sequelize,
         modelName: 'AcreageRange'

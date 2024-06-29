@@ -9,23 +9,27 @@ export const getPostsServices = async (page, limit, priceMin, priceMax, acreageM
         priceMax = +priceMax;
         acreageMin = +acreageMin;
         acreageMax = +acreageMax;
+        
+
+        console.log(priceMin, priceMax)
+        console.log(acreageMin, acreageMax)
 
         // Create a flexible where clause
         const whereClause = {};
 
-        if (Number.isFinite(priceMin) && Number.isFinite(priceMax)) {
+        if (priceMin && priceMax && priceMin < priceMax) {
             whereClause['$attributes.price$'] = { [Op.between]: [priceMin, priceMax] };
-        } else if (Number.isFinite(priceMin)) {
+        } else if (priceMin) {
             whereClause['$attributes.price$'] = { [Op.gte]: priceMin };
-        } else if (Number.isFinite(priceMax)) {
+        } else if (priceMax) {
             whereClause['$attributes.price$'] = { [Op.lte]: priceMax };
         }
 
-        if (Number.isFinite(acreageMin) && Number.isFinite(acreageMax)) {
+        if (acreageMin && acreageMax && acreageMin < acreageMax) {
             whereClause['$attributes.acreage$'] = { [Op.between]: [acreageMin, acreageMax] };
-        } else if (Number.isFinite(acreageMin)) {
+        } else if (acreageMin) {
             whereClause['$attributes.acreage$'] = { [Op.gte]: acreageMin };
-        } else if (Number.isFinite(acreageMax)) {
+        } else if (acreageMax) {
             whereClause['$attributes.acreage$'] = { [Op.lte]: acreageMax };
         }
         

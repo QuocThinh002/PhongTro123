@@ -12,10 +12,10 @@ module.exports = {
             title: {
                 type: Sequelize.STRING
             },
-            priceMin: {
+            min: {
                 type: Sequelize.INTEGER
             },
-            priceMax: {
+            max: {
                 type: Sequelize.INTEGER
             },
             createdAt: {

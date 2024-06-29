@@ -2,16 +2,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
     async up(queryInterface, Sequelize) {
-        await queryInterface.createTable('ArceageRanges', {
+        await queryInterface.createTable('AcreageRanges', {
             id: {
+                type: Sequelize.INTEGER,
                 allowNull: false,
-                primary: true,
+                primaryKey: true,
+                autoIncrement: true
+            },
+            title: {
                 type: Sequelize.STRING
             },
-            acreageMin: {
+            min: {
                 type: Sequelize.INTEGER
             },
-            acreageMax: {
+            max: {
                 type: Sequelize.INTEGER
             },
             createdAt: {
@@ -22,7 +26,7 @@ module.exports = {
                 allowNull: false,
                 type: Sequelize.DATE
             }
-        }) 
+        })
     },
     async down(queryInterface, Sequelize) {
         await queryInterface.dropTable('AcreageRanges')

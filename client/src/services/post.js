@@ -4,7 +4,7 @@ export const apiGetPosts = (data) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosConfig({
             method: 'get',
-            url: `/api/v1/post?page=${data.page}&limit=${data.limit}&priceMin=${data.priceMin}&priceMax=${data.priceMax}`
+            url: `/api/v1/post?page=${data.page}&limit=${data.limit}&priceMin=${data.priceMin}&priceMax=${data.priceMax}&acreageMin=${data.acreageMin}&acreageMax=${data.acreageMax}`
         })
         resolve(response)
     } catch (error) {

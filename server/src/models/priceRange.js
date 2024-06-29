@@ -10,8 +10,8 @@ module.exports = (sequelize, DataTypes) => {
 
     PriceRange.init({
         title: DataTypes.STRING,
-        priceMin: DataTypes.INTEGER,
-        priceMax: DataTypes.INTEGER,
+        min: DataTypes.INTEGER,
+        max: DataTypes.INTEGER,
     }, {
         sequelize,
         modelName: 'PriceRange'

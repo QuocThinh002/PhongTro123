@@ -2,7 +2,7 @@ import AllRoute from "./components/AllRoute";
 
 function App() {
   return (
-    <div className="h-screen bg-primary">
+    <div className=" bg-primary italic">
       <AllRoute />
     </div>
   );

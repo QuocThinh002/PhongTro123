@@ -4,12 +4,15 @@ import * as postServices from '../services/post'
 
 export const getPosts = async (req, res) => {
     try {
-        let { page, limit, priceMin, priceMax, acreageMin, acreageMax } = req.query;
+        let { page, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy } = req.query;
+        page = parseInt(page) || 1;
+        limit = parseInt(limit) || 20;
+        priceMin = +priceMin;
+        priceMax = +priceMax;
+        acreageMin = +acreageMin;
+        acreageMax = +acreageMax;
         
-        page = page ? parseInt(page) : 1; 
-        limit = limit ? parseInt(limit) : 20;
-        
-        const response = await postServices.getPostsServices(page, limit, priceMin, priceMax, acreageMin, acreageMax);
+        const response = await postServices.getPostsServices(page, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy);
 
         res.status(200).json(response)
     } catch (error) {

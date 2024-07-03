@@ -21,14 +21,42 @@ module.exports = (sequelize, DataTypes) => {
         star: DataTypes.STRING,
         labelCode: DataTypes.STRING,
         address: DataTypes.STRING,
-        attributesId: DataTypes.STRING,
+        attributesId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'Attributes',
+                key: 'id'
+            }
+        },
         categoryCode: DataTypes.STRING,
         description: DataTypes.TEXT,
-        userId: DataTypes.STRING,
-        overviewId: DataTypes.STRING,
-        imagesId: DataTypes.STRING,
+        userId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'Users',
+                key: 'id'
+            }
+        },
+        overviewId:{
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'Overviews',
+                key: 'id'
+            }
+        },
+        imagesId: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            references: {
+                model: 'Images',
+                key: 'id'
+            }
+        },
     }, {
-        sequelize,
+        sequelize,  
         modelName: 'Post',
     });
     return Post;

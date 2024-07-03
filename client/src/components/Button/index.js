@@ -4,7 +4,7 @@ const Button = (props) => {
     const { onClick, text, textColor, bgColor, iconLeft, iconRight, width, hoverColor, addClass} = props;
     // console.log(props)
     return (<>  
-        <button type="button" onClick={onClick} className={`p-2 ${textColor || ''} ${bgColor || ''} ${width || ''} ${hoverColor || ''} ${addClass} outline-none rounded-md flex items-center justify-center gap-1 font-semibold`}>
+        <button type="button" onClick={onClick} className={`p-2 ${textColor || ''} ${bgColor || ''} ${width || ''} ${hoverColor || ''} ${addClass} italic outline-none rounded-md flex items-center justify-center gap-1 font-semibold`}>
             {iconLeft && <span>{iconLeft}</span>}
             {text && <span>{text}</span>}
             {iconRight && <span>{iconRight}</span>}

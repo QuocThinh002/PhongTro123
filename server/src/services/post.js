@@ -1,18 +1,20 @@
 import { Op } from 'sequelize';
 import { Post, Image, Attribute, User } from '../models';
 
-export const getPostsServices = async (page, limit, priceMin, priceMax, acreageMin, acreageMax) => {
+export const getPostsServices = async (page, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy) => {
     try {
-        page = parseInt(page) || 1;
-        limit = parseInt(limit) || 20;
-        priceMin = +priceMin;
-        priceMax = +priceMax;
-        acreageMin = +acreageMin;
-        acreageMax = +acreageMax;
-        
+        let order = [['star', 'DESC'], ['createdAt', 'DESC']];
+        if (orderBy) {
+            const parts = orderBy.split('-');
+            if (parts.length === 2) {
+                const fieldName = parts[0];
+                const direction = parts[1].toUpperCase(); // Ensure direction is uppercase (ASC or DESC)
+                order = [[fieldName, direction]]
+            }
+        }
 
-        console.log(priceMin, priceMax)
-        console.log(acreageMin, acreageMax)
+        // console.log(priceMin, priceMax)
+        // console.log(acreageMin, acreageMax)
 
         // Create a flexible where clause
         const whereClause = {};
@@ -32,7 +34,7 @@ export const getPostsServices = async (page, limit, priceMin, priceMax, acreageM
         } else if (acreageMax) {
             whereClause['$attributes.acreage$'] = { [Op.lte]: acreageMax };
         }
-        
+
         const { count, rows: posts } = await Post.findAndCountAll({
             // logging: console.log,
             where: whereClause,
@@ -44,13 +46,13 @@ export const getPostsServices = async (page, limit, priceMin, priceMax, acreageM
                 { model: User, as: 'user', attributes: ['id', 'fullName', 'phone', 'zalo'] }
             ],
             attributes: ['id', 'title', 'star', 'address', 'description', 'createdAt'],
-            order: [['star', 'DESC'], ['createdAt', 'DESC']],
+            order,
             offset: (page - 1) * limit,
             limit
         });
 
         return {
-            error: 0,
+            success: 1,
             message: 'Posts retrieved successfully',
             count,
             posts
@@ -58,7 +60,7 @@ export const getPostsServices = async (page, limit, priceMin, priceMax, acreageM
     } catch (error) {
         console.error("Error fetching posts:", error);
         return {
-            error: 1,
+            success: 0,
             message: 'Failed to retrieve posts',
             count: 0,
             posts: []

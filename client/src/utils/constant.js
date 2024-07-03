@@ -16,3 +16,30 @@ export const location = [
         image: 'https://phongtro123.com/images/location_dn.jpg'
     }
 ]
+
+export const levelStar = [
+    {
+        textColor: 'text-one',
+        borderColor: 'border-one',
+    },
+    {
+        textColor: 'text-one',
+        borderColor: 'border-one',
+    },
+    {
+        textColor: 'text-two',
+        borderColor: 'border-two'
+    },
+    {
+        textColor: 'text-three',
+        borderColor: 'border-three'
+    },
+    {
+        textColor: 'text-four',
+        borderColor: 'border-four'
+    },
+    {
+        textColor: 'text-five',
+        borderColor: 'border-five'
+    }
+]

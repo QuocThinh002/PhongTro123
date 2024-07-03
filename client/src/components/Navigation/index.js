@@ -21,7 +21,7 @@ const Navigation = () => {
             <div className=" text-white text-sm font-semibold mx-auto w-[1120px]">
                 <NavLink
                     to='/'
-                    className={({ isActive }) => ((isActive ? "bg-secondary2" : "") + " hover:bg-secondary2 px-3 inline-block h-10 leading-10")}
+                    className={({ isActive }) => ((isActive ? "bg-secondary2" : "") + " px-3 inline-block h-10 leading-10")}
                 >
                     Trang chủ
                 </NavLink>

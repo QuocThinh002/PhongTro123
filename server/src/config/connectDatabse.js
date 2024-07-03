@@ -1,14 +1,18 @@
-const { Sequelize } = require('sequelize');
+import { Sequelize } from 'sequelize';
+import dotenv from 'dotenv'
 
-// // Option 1: Passing a connection URI
-// const sequelize = new Sequelize('sqlite::memory:') // Example for sqlite
-// const sequelize = new Sequelize('postgres://user:pass@example.com:5432/dbname') // Example for postgres
+dotenv.config()
 
-// // Option 2: Passing parameters separately (sqlite)
-// const sequelize = new Sequelize({
-//   dialect: 'sqlite',
-//   storage: 'path/to/database.sqlite'
-// });
+
+// const DATABASE_URL = `${process.env.DB_DIALECT}://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DATABASE}?sslmode=${process.env.DB_SSL === 'true' ? 'require' : 'disable'}`;
+const DATABASE_URL = process.env.DATABASE_URL;
+// console.log(DATABASE_URL)
+if (!DATABASE_URL) {
+    throw new Error('DATABASE_URL không được thiết lập đúng cách.');
+}
+
+// const sequelize = new Sequelize(DATABASE_URL);
+
 
 // Option 3: Passing parameters separately (other dialects)
 const sequelize = new Sequelize('phongtro123', 'root', null, {
@@ -16,6 +20,8 @@ const sequelize = new Sequelize('phongtro123', 'root', null, {
     dialect: 'mysql', /* one of 'mysql' | 'postgres' | 'sqlite' | 'mariadb' | 'mssql' | 'db2' | 'snowflake' | 'oracle' */
     loggin: false,
 });
+
+
 
 const connectDatabase = async () => {
     try {

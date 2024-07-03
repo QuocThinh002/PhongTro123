@@ -15,10 +15,16 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "db_phongtro123_fuuq_user",
+    "password": "ClCzfKkKNcfq449rZTNoef0PzHDECcjC",
+    "database": "db_phongtro123_fuuq",
+    "host": "dpg-cpvvq72ju9rs73alpl5g-a.singapore-postgres.render.com",
+    "dialect": "postgres",
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }

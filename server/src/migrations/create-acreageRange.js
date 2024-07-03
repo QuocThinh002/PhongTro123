@@ -4,10 +4,9 @@ module.exports = {
     async up(queryInterface, Sequelize) {
         await queryInterface.createTable('AcreageRanges', {
             id: {
-                type: Sequelize.INTEGER,
+                type: Sequelize.STRING,
                 allowNull: false,
                 primaryKey: true,
-                autoIncrement: true
             },
             title: {
                 type: Sequelize.STRING

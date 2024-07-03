@@ -8,7 +8,19 @@ export const insert = async (req, res) => {
 
     } catch (error) {
         return res.status(500).json({
-            error: -1,
+            success: false,
+            message: 'Fail at insert controller: '  + error
+        })
+    }
+}
+
+export const insertOne = async (req, res) => {
+    try {
+        const response = await insertService.insertOne( req.body)
+        res.status(200).json(response)
+    } catch (error) {
+        res.status(500).json({
+            success: false,
             message: 'Fail at insert controller: '  + error
         })
     }

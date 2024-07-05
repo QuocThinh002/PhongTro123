@@ -1,7 +1,7 @@
 import { Op } from 'sequelize';
 import { Post, Image, Attribute, User } from '../models';
 
-export const getPostsServices = async (page, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy) => {
+export const getPostsServices = async (page, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy, categoryCode) => {
     try {
         let order = [['star', 'DESC'], ['createdAt', 'DESC']];
         if (orderBy) {
@@ -17,7 +17,10 @@ export const getPostsServices = async (page, limit, priceMin, priceMax, acreageM
         // console.log(acreageMin, acreageMax)
 
         // Create a flexible where clause
-        const whereClause = {};
+        const whereClause = {
+        };
+        if (categoryCode) whereClause['categoryCode'] = categoryCode;
+               
 
         if (priceMin && priceMax && priceMin < priceMax) {
             whereClause['$attributes.price$'] = { [Op.between]: [priceMin, priceMax] };

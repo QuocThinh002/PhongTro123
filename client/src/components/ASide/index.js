@@ -21,14 +21,22 @@ const ASide = () => {
     }, [])
 
     const onPriceRangeChange = (priceMin, priceMax) => {
+        
         const currentParams = Object.fromEntries([...searchParams])
         delete currentParams.page;
-        
-        if (!priceMin) delete currentParams.priceMin;
-        else currentParams.priceMin = priceMin;
 
-        if (!priceMax) delete currentParams.priceMax;
-        else currentParams.priceMax = priceMax;
+        if (currentParams.priceMin == priceMin && currentParams.priceMax == priceMax) {
+            delete currentParams.priceMin;
+            delete currentParams.priceMax;
+        } else {
+            if (!priceMin) delete currentParams.priceMin;
+            else currentParams.priceMin = priceMin;
+
+            if (!priceMax) delete currentParams.priceMax;
+            else currentParams.priceMax = priceMax;
+        }
+
+
 
         setSearchParams(currentParams)
     }
@@ -36,21 +44,28 @@ const ASide = () => {
     const onAcreageRangeChange = (acreageMin, acreageMax) => {
         const currentParams = Object.fromEntries([...searchParams])
         delete currentParams.page;
-        
-        if (!acreageMin) delete currentParams.acreageMin;
-        else currentParams.acreageMin = acreageMin;
 
-        if (!acreageMax) delete currentParams.acreageMax;
-        else currentParams.acreageMax = acreageMax;
+        if (currentParams.acreageMin == acreageMin && currentParams.acreageMax == acreageMax) {
+            delete currentParams.acreageMin;
+            delete currentParams.acreageMax;
+        } else {
+            if (!acreageMin) delete currentParams.acreageMin;
+            else currentParams.acreageMin = acreageMin;
+
+            if (!acreageMax) delete currentParams.acreageMax;
+            else currentParams.acreageMax = acreageMax;
+        }
 
         setSearchParams(currentParams)
     }
 
+    // console.log(searchParams)
+
     return (<>
         <div className="flex flex-col gap-4">
-            <SubLink onRangeChange={onPriceRangeChange} title={'Xem theo giá'} data={priceRanges}  />
-            <SubLink onRangeChange={onAcreageRangeChange} title={'Xem theo diện tích'} data={acreageRanges}  />
-            <NewPost  title={'Tin mới đăng'} data={newPosts} />
+            <SubLink onRangeChange={onPriceRangeChange} title={'Xem theo giá'} data={priceRanges} min={searchParams.get('priceMin')} max={searchParams.get('priceMax')} />
+            <SubLink onRangeChange={onAcreageRangeChange} title={'Xem theo diện tích'} data={acreageRanges}  min={searchParams.get('acreageMin')} max={searchParams.get('acreageMax')} />
+            <NewPost title={'Tin mới đăng'} data={newPosts} />
         </div>
     </>)
 }

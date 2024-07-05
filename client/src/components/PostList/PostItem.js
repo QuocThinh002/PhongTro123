@@ -45,7 +45,7 @@ const PostItem = (props) => {
                     </span>
 
                 </div>
-                <div className="mt-1">
+                <div>
                     <span className='text-textColor text-md font-bold'>{convertPriceUnit(post?.attributes?.price)}/tháng</span>
                     <span className='ml-3'>{post?.attributes?.acreage}</span>
                     <span className='float-right text-gray-500'>{timeAgo(post?.createdAt)}</span>
@@ -53,7 +53,7 @@ const PostItem = (props) => {
                 <div className='mb-1'>
                     {getAttributeConfig.address(post?.address)}
                 </div>
-                <div className={`${star === 5 ? 'line-clamp-3' : 'line-clamp-2'} text-gray-500 mb-4`}>{getAttributeConfig.description(post?.description)}</div>
+                <div className={`${star === 5 ? 'line-clamp-3' : 'line-clamp-2'} text-gray-500 mb-1 `}>{getAttributeConfig.description(post?.description)}</div>
                 <div className='px-4'>
                     <MetaRow user={post?.user} star={star} />
                 </div>

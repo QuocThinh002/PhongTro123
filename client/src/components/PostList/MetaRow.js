@@ -7,7 +7,7 @@ const MetaRow = (props) => {
     return (<>
         <div className='flex items-center justify-between'>
             <div className='flex items-center flex-1'>
-                <div className='h-10 w-10 rounded-full overflow-hidden'>
+                <div className='h-8 w-8 rounded-full overflow-hidden'>
                     <img
                         src={user?.avatar || (window.location.origin + '/assets/image/non_avatar.png')}
                         alt={user?.fullName}
@@ -21,7 +21,7 @@ const MetaRow = (props) => {
                 <img
                     src={window.location.origin + '/assets/image/icon_zalo.png'}
                     alt='zalo'
-                    className='w-10 h-10 cursor-pointer rounded-lg'
+                    className='w-8 h-8 cursor-pointer rounded-lg'
                 />
             </div>}
         </div>

@@ -9,7 +9,8 @@ const actionTypes = {
     GET_POSTS: 'GET_POSTS',
     GET_PRICE_RANGE: 'GET_PRICE_RANGE',
     GET_ACREAGE_RANGE: 'GET_ACREAGE_RANGE',
-    GET_NEW_POST: 'GET_NEW_POST'
+    GET_NEW_POST: 'GET_NEW_POST',
+    GET_CATEGORY: 'GET_CATEGORY'
 }
 
 export default actionTypes;

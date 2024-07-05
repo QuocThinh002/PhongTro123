@@ -12,7 +12,7 @@ export const getCategoriesServices = () => new Promise(async (resolve, reject) =
         categories?.map(category => category.path = convertVietnameseSlug(category.value))
 
         resolve({
-            error: categories ? 0 : 1,
+            success: !!categories,
             message: categories ? 'ok': 'fail get categories',
             categories
         })

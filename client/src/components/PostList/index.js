@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from 'react-redux'
 
 import Button from "../Button";
@@ -6,10 +6,13 @@ import PostItem from "./PostItem";
 import Pagination from "../Pagination";
 
 import { getPosts } from "../../store/actions/post";
-import { useSearchParams } from "react-router-dom";
+import { useLocation, useSearchParams } from "react-router-dom";
+import { FaUnderline } from "react-icons/fa6";
 
 const PostList = () => {
     const { count, posts } = useSelector(state => state.post)
+    const { categories } = useSelector(state => state.category)
+    
     const dispatch = useDispatch()
     const [searchParams, setSearchParams] = useSearchParams()
     const currentPage = +searchParams.get('page') || 1
@@ -20,10 +23,14 @@ const PostList = () => {
     const acreageMin = +searchParams.get('acreageMin');
     const acreageMax = +searchParams.get('acreageMax');
     const orderBy = searchParams.get('orderBy')
+    const location = useLocation();
+    const pathnames = location.pathname.split('/');
+    const category = categories.find(item => item.path === pathnames[1]);
+    const categoryCode = category ? category.code : '';
 
     useEffect(() => {
-        dispatch(getPosts({ currentPage, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy }))
-    }, [currentPage, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy])
+        dispatch(getPosts({ currentPage, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy, categoryCode }))
+    }, [currentPage, limit, priceMin, priceMax, acreageMin, acreageMax, orderBy, categoryCode])
 
     const onPageChange = (page) => {
         const currentParams = Object.fromEntries([...searchParams]);
@@ -47,7 +54,7 @@ const PostList = () => {
                         <Button
                             onClick={() => onOrderByChange()}
                             text='Mặc định'
-                            bgColor={searchParams.get('orderBy') === null ? 'bg-secondary1 text-white' :'bg-primary hover:bg-blue-100'}
+                            bgColor={searchParams.get('orderBy') === null ? 'bg-secondary1 text-white' : 'bg-primary hover:bg-blue-100'}
                         />
                         <Button
                             onClick={() => onOrderByChange('createdAt-desc')}

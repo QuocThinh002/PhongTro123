@@ -12,6 +12,7 @@ module.exports = {
         secondary2: '#f73859',
         outstanding: '#fff9f3',
         textColor: '#16c784',
+        hover: '#f70',
         one: '#055699',
         two: '#007BFF',
         three: '#FF6600',

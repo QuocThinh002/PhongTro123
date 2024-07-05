@@ -11,7 +11,7 @@ const ProvinceItem = (props) => {
                     alt={name}
                     className="w-[220px] h-[110px] object-cover"
                 />
-                <h2 className="text-sm font-bold text-blue-700 hover:text-orange-500 text-center py-2">{name}</h2>
+                <h2 className="text-sm font-bold text-blue-700 hover:text-hover text-center py-2">{name}</h2>
             </div>
         </Link>
     </>)

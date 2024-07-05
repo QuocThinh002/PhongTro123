@@ -3,6 +3,7 @@ import userReducer from './userReducer';
 import postReducer from './postReducer';
 import priceRangeReducer from './priceRangeReducer'
 import acreageRangeReducer from './acreageRangeReducer';
+import categoryReducer from './catogoryReducer';
 
 import { combineReducers } from 'redux';
 import storage from 'redux-persist/lib/storage';
@@ -26,6 +27,7 @@ const rootReducer = combineReducers({
     post: postReducer,
     priceRange: priceRangeReducer,
     acreageRange: acreageRangeReducer,
+    category: categoryReducer
 })
 
 export default rootReducer;

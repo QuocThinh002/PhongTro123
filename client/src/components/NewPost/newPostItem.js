@@ -12,7 +12,7 @@ const NewPostItem = (props) => {
 
     return (<>
         <Link to={`post/${newPost.id}`}>
-            <div className="flex shadow rounded">
+            <div className="flex shadow rounded w-full">
                 <div className="w-[65px] aspect-square mr-3">
                     <img
                         src={imagesUrl[0] || (window.location.origin + '/assets/image/non_image.png')}
@@ -21,12 +21,12 @@ const NewPostItem = (props) => {
                     />
 
                 </div>
-                <div className="flex-1 ">
-                    <span className=" line-clamp-2">
+                <div className="flex-1">
+                    <span className=" line-clamp-2 ">
                     {[...Array(star)].map((_, index) => (
-                            <span className="inline-block text-yellow-400" key={index}><FaStar  size={14} /></span>
+                            <span className="inline-block text-yellow-400     " key={index}><FaStar  size={14} /></span>
                         ))}
-                    <span className={`${levelStar[star].textColor} ${star >= 2 ? 'uppercase ml-1' : 'normal-case'} text-sm font-medium`}>{newPost?.title}</span>
+                    <span className={`${levelStar[star].textColor} ${star >= 2 ? 'uppercase ml-1' : 'normal-case'} text-sm font-medium    `}>{newPost?.title}</span>
 
                     </span>
                     <div className="flex justify-between">

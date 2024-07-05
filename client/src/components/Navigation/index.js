@@ -1,35 +1,36 @@
 import { NavLink } from 'react-router-dom'
-import { useState, useEffect } from 'react'
-import { apiGetCategories } from '../../services/category';
+import { useSelector, useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getCategories } from '../../store/actions/category'
 
 const Navigation = () => {
-    const [categories, setCategories] = useState([]);
+
+    let { categories } = useSelector(state => state.category)
+    categories = [
+        {
+            path: '/',
+            value: 'Trang chủ',
+            code: 'HOME'
+        },
+        ...categories
+    ]
+
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        const fetchCategories = async () => {
-            const response = await apiGetCategories();
-            const categories = response?.data?.categories || [];
-            setCategories(categories)
-        }
-        fetchCategories()
+        dispatch(getCategories())
     }, [])
 
 
 
     return (<>
-        <div className="bg-secondary1 mb-4">
-            <div className=" text-white text-sm font-semibold mx-auto w-[1120px]">
-                <NavLink
-                    to='/'
-                    className={({ isActive }) => ((isActive ? "bg-secondary2" : "") + " px-3 inline-block h-10 leading-10")}
-                >
-                    Trang chủ
-                </NavLink>
+        <div className="bg-secondary1 text-white mb-4 shadow ">
+            <div className=" text-sm font-semibold mx-auto w-[1120px]">
                 {categories?.length > 0 && categories.map((category) => (
                     <span key={category.code}>
                         <NavLink
                             to={category.path}
-                            className={({ isActive }) => ((isActive ? "bg-secondary2" : "") + " hover:bg-secondary2 px-3 inline-block h-10 leading-10")}
+                            className={({ isActive }) => ((isActive ? "bg-primary text-black" : "") + " px-3 inline-block h-10 leading-10")}
                         >
                             {category.value}
                         </NavLink>
